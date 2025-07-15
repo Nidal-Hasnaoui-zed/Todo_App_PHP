@@ -1,0 +1,11 @@
+/* تخصيصات بسيطة */
+    body {
+      background: #f8f9fa;
+    }
+    .completed label {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+    .sortable-chosen {
+      background: #e9ecef !important;
+    }
