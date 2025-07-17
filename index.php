@@ -41,11 +41,11 @@
             </div>
             <div class="col-md-2">
                 <label class="form-label fw-semibold">Difficulty</label>
-                <select name="" id="task-priority" class="form-select">
+                <select name="difficulty" id="task-priority" class="form-select">
                 <option value="0" selected>—</option>
-                <option value="High">Heigh</option>
-                <option value="Medium">Mid</option>
-                <option value="Low">Low</option>
+                <option value="1">Low</option>
+                <option value="2">Mid</option>
+                <option value="3">Heigh</option>
                 </select>difficulty
             </div>
             <div class="col-md-2">
