@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Todo List Pro</title>
@@ -22,7 +23,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
   
@@ -112,8 +113,8 @@
               <td>task Difficulty</td>
               <td>task Category</td>
               <td>task stat</td>
-              <td>Edit</td>
               <td>Delet</td>
+              <td>Edit</td>
             </tr>
         </thead>
         <tbody>
@@ -134,7 +135,7 @@
               $tr .= $task['id']; 
               $tr .= "'><i class='fa fa-trash fa-lg'></i></a></button>";
               $tr .= "</td><td>" ;
-              $tr .= "<button class='btn btn-primary btn-sm'> <i class='fa fa-pen fa-lg'></i></button>";
+              $tr .= "<button class='btn btn-primary btn-sm' onclick='toggleEdit()'> <i class='fa fa-pen fa-lg'></i></button>";
               $tr .= "</td></tr>";
               echo $tr ;
             }
@@ -144,71 +145,47 @@
      </div>
 
   </div>
+  
+    <!-- hedden edit ask Card  -->
+
+    <div id="task_card">
+      <button class="btn-close position-absolute top-0 end-0 m-2" onclick="toggleEdit(false)"></button>
+      <h5>Edit Task</h5>
+      <p>Here goes the edit task form content...</p>
+    </div>
 
   
-  <div
-    class="modal fade"
-    id="editModal"
-    tabindex="-1"
-    aria-labelledby="editModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Edit A task </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form id="edit-form">
-            <div class="mb-3">
-              <label class="form-label">Title</label>
-              <input id="edit-title" class="form-control" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Date</label>
-              <input id="edit-date" type="date" class="form-control" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Primary</label>
-              <select id="edit-priority" class="form-select">
-                <option value="">—</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">category</label>
-              <input id="edit-category" class="form-control" />
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cancel
-          </button>
-          <button type="button" class="btn btn-primary" id="save-edit-btn">
-            Save 
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Bootstrap & Sortable JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 <!-- i make this as comment bc i wnna work this project with php not js ! -->
   <!-- <script src="script.js"></script> -->
+
+  <script>
+      function toggleEdit(show = true) {
+        const taskCard = document.getElementById('task_card');
+        if (show) {
+          taskCard.classList.add('show');
+        } else {
+          taskCard.classList.remove('show');
+          setTimeout(() => {
+            taskCard.style.display = "none";
+          }, 300); // match transition
+        }
+      }
+
+      // Override display none manually when showing
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = document.getElementById('task_card');
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.classList.add('show');
+          }, 10);
+        });
+      });
+</script>
+
+   
 </body>
 </html>

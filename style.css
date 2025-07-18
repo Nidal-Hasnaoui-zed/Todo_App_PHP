@@ -1,4 +1,3 @@
-
     body {
       background: #f8f9fa;
     }
@@ -8,4 +7,29 @@
     }
     .sortable-chosen {
       background: #e9ecef !important;
+    }
+   /*  the task card hidden code css   */
+    /* Hidden Task Card Edit Form */
+    #task_card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 500px;
+    max-width: 90%;
+    height: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    }
+
+    #task_card.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
     }
