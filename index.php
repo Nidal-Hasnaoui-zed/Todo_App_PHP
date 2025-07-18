@@ -97,7 +97,8 @@
       </div>
       <a href="../todo_app/action files/deletAll.php">
          <button id="clear-completed-btn" class="btn btn-outline-danger btn-sm">
-           <i class="fa fa-trash"></i> Delect Completed Task 
+          <!-- after you must make this button be the button of delet all completed task ! -->
+           <i class="fa fa-trash"></i> Delet Incompleted Task 
         </button>
       </a>
     </div>
