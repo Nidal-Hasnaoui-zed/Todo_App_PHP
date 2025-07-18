@@ -3,6 +3,15 @@
     $req = 'select * from tasks'; 
     $stmt = $conn->query($req);
     $all_tasks = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+
+    $edit_task = null;
+    if (isset($_GET['edit_id'])) {
+        $edit_id = $_GET['edit_id'];
+        $stmt = $conn->prepare('SELECT * FROM tasks WHERE id = :id');
+        $stmt->execute(['id' => $edit_id]);
+        $edit_task = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -135,8 +144,12 @@
               $tr .= $task['id']; 
               $tr .= "'><i class='fa fa-trash fa-lg'></i></a></button>";
               $tr .= "</td><td>" ;
-              $tr .= "<button class='btn btn-primary btn-sm' onclick='toggleEdit()'> <i class='fa fa-pen fa-lg'></i></button>";
-              $tr .= "</td></tr>";
+             $tr .= "<a class='btn btn-primary btn-sm' style='color:white'
+                  href='?edit_id=" . $task['id'] . "' 
+                  onclick='event.preventDefault(); toggleEdit(true); window.history.pushState({}, \"\", this.href);'>
+                  <i class='fa fa-pen fa-lg'></i>
+              </a>";
+
               echo $tr ;
             }
           ?>
@@ -145,16 +158,56 @@
      </div>
 
   </div>
-  
-    <!-- hedden edit ask Card  -->
+            
+  <div id="task_card" class="edit-task-card">
+  <button class="btn-close position-absolute top-0 end-0 m-3" onclick="toggleEdit(false)"></button>
+  <h5 class="mb-3 text-center">Edit Task</h5>
 
-    <div id="task_card">
-      <button class="btn-close position-absolute top-0 end-0 m-2" onclick="toggleEdit(false)"></button>
-      <h5>Edit Task</h5>
-      <p>Here goes the edit task form content...</p>
+  <form action="udapte.php" method="post">
+    
+    <!-- Hidden input for task ID (important if you're updating by ID) -->
+    <input type="hidden" name="task_id" value="<?= $edit_task['id'] ?>">
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold" for="new_title">New Title</label>
+      <input type="text" name="new_title" id="new_title" class="form-control" value="<?= htmlspecialchars($edit_task['title']) ?>">
     </div>
 
-  
+    <!-- Date -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold" for="new_Date">Date</label>
+      <input type="date" id="new_Date" name="new_date" class="form-control" value="<?= $edit_task['date'] ?>">
+    </div>
+
+    <!-- Difficulty -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold" for="def">Difficulty</label>
+      <select name="new_difficulty" id="def" class="form-select">
+        <option value="0" <?= $edit_task['difficulty'] == 0 ? 'selected' : '' ?>>—</option>
+        <option value="1" <?= $edit_task['difficulty'] == 1 ? 'selected' : '' ?>>Low</option>
+        <option value="2" <?= $edit_task['difficulty'] == 2 ? 'selected' : '' ?>>Mid</option>
+        <option value="3" <?= $edit_task['difficulty'] == 3 ? 'selected' : '' ?>>High</option>
+      </select>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold" for="task-category">Category</label>
+      <input id="task-category" name="new_category" class="form-control" placeholder="Ex: Project !" value="<?= htmlspecialchars($edit_task['category']) ?>" />
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-grid">
+      <button class="btn btn-success" name="send">
+        <i class="fa fa-pen fa-lg"></i> Edit
+      </button>
+    </div>
+
+  </form>
+</div>
+
+      
   <!-- Bootstrap & Sortable JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
@@ -162,29 +215,22 @@
   <!-- <script src="script.js"></script> -->
 
   <script>
-      function toggleEdit(show = true) {
-        const taskCard = document.getElementById('task_card');
-        if (show) {
-          taskCard.classList.add('show');
-        } else {
-          taskCard.classList.remove('show');
-          setTimeout(() => {
-            taskCard.style.display = "none";
-          }, 300); // match transition
-        }
-      }
-
-      // Override display none manually when showing
-      document.querySelectorAll('.btn-primary').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = document.getElementById('task_card');
-          card.style.display = 'block';
-          setTimeout(() => {
-            card.classList.add('show');
-          }, 10);
-        });
-      });
+  function toggleEdit(show = true) {
+    const taskCard = document.getElementById('task_card');
+    if (show) {
+      taskCard.style.display = 'block';
+      setTimeout(() => {
+        taskCard.classList.add('show');
+      }, 10);
+    } else {
+      taskCard.classList.remove('show');
+      setTimeout(() => {
+        taskCard.style.display = 'none';
+      }, 300); // خاصو يكون مطابق مع transition ديال CSS
+    }
+  }
 </script>
+
 
    
 </body>
