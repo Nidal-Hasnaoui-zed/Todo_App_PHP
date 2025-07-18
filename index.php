@@ -1,3 +1,10 @@
+<?php 
+    include('../todo_app/action files/conx.php'); 
+    $req = 'select * from tasks'; 
+    $stmt = $conn->query($req);
+    $all_tasks = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +21,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -92,8 +100,44 @@
       </button>
     </div>
 
-    
-    <ul id="task-list" class="list-group"></ul>
+     <div style="width: 1000px;margin:40px auto">
+        <table class="table table-striped">
+        <thead>
+            <tr>
+              <td>task title</td>
+              <td>task date</td>
+              <td>task Difficulty</td>
+              <td>task Category</td>
+              <td>task stat</td>
+              <td>Edit</td>
+              <td>Delet</td>
+            </tr>
+        </thead>
+        <tbody>
+          <?php 
+            foreach($all_tasks as $task){
+              $tr = "<tr><td>"; 
+              $tr .= $task['title']; 
+              $tr .= "</td><td>" ;
+              $tr .= $task['due_date']; 
+              $tr .= "</td><td>" ;
+              $tr .= $task['difficulty']; 
+              $tr .= "</td><td>" ;
+              $tr .= $task['category'];
+              $tr .= "</td><td>" ;
+              $tr .= "state" ; 
+              $tr .= "</td><td>" ;
+              $tr .= "<button class='btn btn-danger btn-sm'>Delete</button>";
+              $tr .= "</td><td>" ;
+              $tr .= "<button class='btn btn-primary btn-sm'>Delete</button>";
+              $tr .= "</td></tr>";
+              echo $tr ;
+            }
+          ?>
+        </tbody>
+     </table>
+     </div>
+
   </div>
 
   
