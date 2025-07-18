@@ -1,6 +1,6 @@
 <?php 
     $server_name = 'localhost';
-    $db_name = 'todo_list_app'; // تم حذف المسافة الزائدة
+    $db_name = 'todo_list_app'; 
     $user_name = 'root';
     $password = '';
 

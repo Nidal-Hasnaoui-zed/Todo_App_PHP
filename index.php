@@ -29,7 +29,7 @@
     <div class="card shadow-sm mb-4">
       <div class="card-body">
         <h5 class="card-title mb-3">Add a new Task !</h5>
-        <form action="action files/action2.php" method="post">
+        <form action="action files/action.php" method="post">
             <div class="row g-2 align-items-end">
             <div class="col-md-4">
                 <label class="form-label fw-semibold">Title</label>

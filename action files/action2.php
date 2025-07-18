@@ -1,5 +1,5 @@
 <?php
-// action.php
+
 if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['send'])) {
     function test_input($data) {
         $data = htmlspecialchars($data);
