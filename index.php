@@ -127,9 +127,11 @@
               $tr .= "</td><td>" ;
               $tr .= "state" ; 
               $tr .= "</td><td>" ;
-              $tr .= "<button class='btn btn-danger btn-sm'>Delete</button>";
+              $tr .= "<button class='btn btn-danger btn-sm'><a style='text-decoration:none;color:white' href='../todo_app/action files/delet.php?idtask=";
+              $tr .= $task['id']; 
+              $tr .= "'>Delete</a></button>";
               $tr .= "</td><td>" ;
-              $tr .= "<button class='btn btn-primary btn-sm'>Delete</button>";
+              $tr .= "<button class='btn btn-primary btn-sm'>Update</button>";
               $tr .= "</td></tr>";
               echo $tr ;
             }
