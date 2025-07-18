@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- شريط الترويسة -->
+  
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><i class="fa fa-list-check me-1"></i> Todo List Pro</a>
@@ -25,7 +25,7 @@
   </nav>
 
   <div class="container py-4">
-    <!-- بطاقة إضافة مهمة جديدة -->
+    
     <div class="card shadow-sm mb-4">
       <div class="card-body">
         <h5 class="card-title mb-3">Add a new Task !</h5>
@@ -92,11 +92,11 @@
       </button>
     </div>
 
-    <!-- قائمة المهام -->
+    
     <ul id="task-list" class="list-group"></ul>
   </div>
 
-  <!-- نافذة تعديل المهمة -->
+  
   <div
     class="modal fade"
     id="editModal"
@@ -159,7 +159,7 @@
   <!-- Bootstrap & Sortable JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-
-  <script src="script.js"></script>
+<!-- i make this as comment bc i wnna work this project with php not js ! -->
+  <!-- <script src="script.js"></script> -->
 </body>
 </html>
