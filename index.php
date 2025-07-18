@@ -95,9 +95,11 @@
           Done 
         </button>
       </div>
-      <button id="clear-completed-btn" class="btn btn-outline-danger btn-sm">
-        <i class="fa fa-trash"></i> Delect Completed Task 
-      </button>
+      <a href="../todo_app/action files/deletAll.php">
+         <button id="clear-completed-btn" class="btn btn-outline-danger btn-sm">
+           <i class="fa fa-trash"></i> Delect Completed Task 
+        </button>
+      </a>
     </div>
 
      <div style="width: 1000px;margin:40px auto">
@@ -125,13 +127,13 @@
               $tr .= "</td><td>" ;
               $tr .= $task['category'];
               $tr .= "</td><td>" ;
-              $tr .= "state" ; 
+              $tr .= $task['state'];
               $tr .= "</td><td>" ;
               $tr .= "<button class='btn btn-danger btn-sm'><a style='text-decoration:none;color:white' href='../todo_app/action files/delet.php?idtask=";
               $tr .= $task['id']; 
-              $tr .= "'>Delete</a></button>";
+              $tr .= "'><i class='fa fa-trash fa-lg'></i></a></button>";
               $tr .= "</td><td>" ;
-              $tr .= "<button class='btn btn-primary btn-sm'>Update</button>";
+              $tr .= "<button class='btn btn-primary btn-sm'> <i class='fa fa-pen fa-lg'></i></button>";
               $tr .= "</td></tr>";
               echo $tr ;
             }
