@@ -2,7 +2,6 @@
     include('../todo_app/action files/conx.php'); 
     $req = 'select * from tasks'; 
     $stmt = $conn->query($req);
-    $all_tasks = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 ?>
 
 <!DOCTYPE html>
@@ -151,7 +150,7 @@
     <div id="task_card">
       <button class="btn-close position-absolute top-0 end-0 m-2" onclick="toggleEdit(false)"></button>
       <h5>Edit Task</h5>
-      <p>Here goes the edit task form content...</p>
+      <p>Dont work right knew !</p>
     </div>
 
   
